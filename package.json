@@ -1,0 +1,33 @@
+{
+  "name": "fcitx5-online",
+  "type": "module",
+  "version": "0.1.0",
+  "appName": "Fcitx5 Online",
+  "author": {
+    "name": "Qijia Liu",
+    "email": "liumeo@pku.edu.cn",
+    "url": "https://github.com/eagleoflqj"
+  },
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "check": "vue-tsc --noEmit",
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.27.0",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "eslint": "^9.9.0",
+    "fcitx5-js": "file:cache/fcitx5-js-0.1.0.tgz",
+    "naive-ui": "^2.39.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-static-copy": "^1.0.6",
+    "vue": "^3.4.38",
+    "vue-tsc": "^2.0.29"
+  }
+}

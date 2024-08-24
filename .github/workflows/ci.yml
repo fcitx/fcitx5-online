@@ -19,9 +19,9 @@ jobs:
 
       - name: Install dependencies
         run: |
+          wget -P cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js-0.1.0.tgz
           npm i -g pnpm
           pnpm i
-          wget -P cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js-0.1.0.tgz
 
       - name: Lint
         run: |

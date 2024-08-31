@@ -22,6 +22,7 @@
     "@rollup/plugin-replace": "^5.0.7",
     "@vitejs/plugin-vue": "^5.1.2",
     "eslint": "^9.9.0",
+    "fcitx5-config-vue": "file:cache/fcitx5-config-vue-0.1.0.tgz",
     "fcitx5-js": "file:cache/fcitx5-js-0.1.0.tgz",
     "naive-ui": "^2.39.0",
     "typescript": "^5.5.4",

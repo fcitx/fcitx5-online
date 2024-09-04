@@ -38,6 +38,7 @@ const showModal = ref(false)
       <InputMethodConfig
         :input-method="inputMethod"
         :input-methods="inputMethods"
+        @close="showModal = false"
       />
     </NModal>
   </NSpace>

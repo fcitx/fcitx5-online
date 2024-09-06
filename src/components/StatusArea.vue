@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NButton, NIcon, NModal, NSelect, NSpace } from 'naive-ui'
-import { InputMethodConfig } from 'fcitx5-config-vue'
+import { NModal, NSelect, NSpace } from 'naive-ui'
+import { GearButton, InputMethodConfig } from 'fcitx5-config-vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
-import GearIcon from './GearIcon.vue'
 
 const options = computed(() => {
   return inputMethods.value.map(({ displayName, name }) => ({
@@ -23,13 +22,7 @@ const showModal = ref(false)
       :loading="loading"
       :options="options"
     />
-    <NButton secondary @click="showModal = true">
-      <template #icon>
-        <NIcon>
-          <GearIcon />
-        </NIcon>
-      </template>
-    </NButton>
+    <GearButton @click="showModal = true" />
     <NModal
       v-model:show="showModal"
       preset="card"

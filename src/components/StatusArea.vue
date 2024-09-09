@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { NModal, NSelect, NSpace } from 'naive-ui'
 import { GearButton, InputMethodConfig } from 'fcitx5-config-vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
+import MenuButton from './MenuButton.vue'
 
 const options = computed(() => {
   return inputMethods.value.map(({ displayName, name }) => ({
@@ -23,6 +24,7 @@ const showModal = ref(false)
       :options="options"
     />
     <GearButton @click="showModal = true" />
+    <MenuButton />
     <NModal
       v-model:show="showModal"
       preset="card"

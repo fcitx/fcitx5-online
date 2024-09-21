@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { NModal, NSelect, NSpace } from 'naive-ui'
-import { GearButton, InputMethodConfig } from 'fcitx5-config-vue'
+import { GearButton, GlobalConfig, InputMethodConfig, ThemeConfig } from 'fcitx5-config-vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
 import MenuButton from './MenuButton.vue'
 import GlobalButton from './GlobalButton.vue'
@@ -16,6 +16,13 @@ const options = computed(() => {
 })
 
 const showModal = ref(false)
+const modalType = ref<'im' | 'global' | 'theme'>('im')
+
+const titleMap = {
+  im: 'Input Method Config',
+  global: 'Global Config',
+  theme: 'Theme Config',
+}
 </script>
 
 <template>
@@ -26,19 +33,28 @@ const showModal = ref(false)
       :loading="loading"
       :options="options"
     />
-    <GearButton @click="showModal = true" />
+    <GearButton @click="modalType = 'im'; showModal = true" />
     <MenuButton />
-    <GlobalButton />
-    <ThemeButton />
+    <GlobalButton @click="modalType = 'global'; showModal = true" />
+    <ThemeButton @click="modalType = 'theme'; showModal = true" />
     <AdvancedButton />
     <NModal
       v-model:show="showModal"
       preset="card"
-      title="Input Method Config"
+      :title="titleMap[modalType]"
     >
       <InputMethodConfig
+        v-if="modalType === 'im'"
         :input-method="inputMethod"
         :input-methods="inputMethods"
+        @close="showModal = false"
+      />
+      <GlobalConfig
+        v-else-if="modalType === 'global'"
+        @close="showModal = false"
+      />
+      <ThemeConfig
+        v-else-if="modalType === 'theme'"
         @close="showModal = false"
       />
     </NModal>

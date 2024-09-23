@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NModal, NSelect, NSpace } from 'naive-ui'
-import { GearButton, GlobalConfig, InputMethodConfig, ThemeConfig } from 'fcitx5-config-vue'
+import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
+import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, ThemeConfig } from 'fcitx5-config-vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
 import MenuButton from './MenuButton.vue'
 import GlobalButton from './GlobalButton.vue'
@@ -16,12 +16,13 @@ const options = computed(() => {
 })
 
 const showModal = ref(false)
-const modalType = ref<'im' | 'global' | 'theme'>('im')
+const modalType = ref<'im' | 'global' | 'theme' | 'advanced'>('im')
 
 const titleMap = {
-  im: 'Input Method Config',
+  im: 'Input Method',
   global: 'Global Config',
-  theme: 'Theme Config',
+  theme: 'Theme Editor',
+  advanced: 'Advanced',
 }
 </script>
 
@@ -33,11 +34,31 @@ const titleMap = {
       :loading="loading"
       :options="options"
     />
-    <GearButton @click="modalType = 'im'; showModal = true" />
+    <NTooltip>
+      <template #trigger>
+        <GearButton @click="modalType = 'im'; showModal = true" />
+      </template>
+      {{ titleMap.im }}
+    </NTooltip>
     <MenuButton />
-    <GlobalButton @click="modalType = 'global'; showModal = true" />
-    <ThemeButton @click="modalType = 'theme'; showModal = true" />
-    <AdvancedButton />
+    <NTooltip>
+      <template #trigger>
+        <GlobalButton @click="modalType = 'global'; showModal = true" />
+      </template>
+      {{ titleMap.global }}
+    </NTooltip>
+    <NTooltip>
+      <template #trigger>
+        <ThemeButton @click="modalType = 'theme'; showModal = true" />
+      </template>
+      {{ titleMap.theme }}
+    </NTooltip>
+    <NTooltip>
+      <template #trigger>
+        <AdvancedButton @click="modalType = 'advanced'; showModal = true" />
+      </template>
+      {{ titleMap.advanced }}
+    </NTooltip>
     <NModal
       v-model:show="showModal"
       preset="card"
@@ -55,6 +76,10 @@ const titleMap = {
       />
       <ThemeConfig
         v-else-if="modalType === 'theme'"
+        @close="showModal = false"
+      />
+      <AdvancedConfig
+        v-else
         @close="showModal = false"
       />
     </NModal>

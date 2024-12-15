@@ -1,6 +1,6 @@
-import { ref, watch } from 'vue'
 import type { MenuAction } from 'fcitx5-js'
 import { fcitxReady } from 'fcitx5-js'
+import { ref, watch } from 'vue'
 
 export const loading = ref(true)
 

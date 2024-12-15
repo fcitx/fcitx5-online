@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, h } from 'vue'
+import type { MenuAction } from 'fcitx5-js'
 import type { DropdownOption } from 'naive-ui'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
-import type { MenuAction } from 'fcitx5-js'
+import { computed, h } from 'vue'
 import { menuActions, refocus } from '../fcitx'
-import HamburgerIcon from './HamburgerIcon.vue'
 import CheckIcon from './CheckIcon.vue'
+import HamburgerIcon from './HamburgerIcon.vue'
 
 function actionToOption(action: MenuAction) {
   if (action.separator) {

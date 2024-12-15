@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import {
+  darkTheme,
   NConfigProvider,
   NH1,
   NModalProvider,
-  darkTheme,
   useOsTheme,
 } from 'naive-ui'
 import { appName } from '../package.json'
-import MyLayout from './components/MyLayout.vue'
-import MyHeader from './components/MyHeader.vue'
-import MyFooter from './components/MyFooter.vue'
 import MyContent from './components/MyContent.vue'
+import MyFooter from './components/MyFooter.vue'
+import MyHeader from './components/MyHeader.vue'
+import MyLayout from './components/MyLayout.vue'
 
 const osThemeRef = useOsTheme()
 </script>

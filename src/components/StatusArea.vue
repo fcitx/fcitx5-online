@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
 import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, ThemeConfig } from 'fcitx5-config-vue'
+import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
+import { computed, ref } from 'vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
-import MenuButton from './MenuButton.vue'
-import GlobalButton from './GlobalButton.vue'
-import ThemeButton from './ThemeButton.vue'
 import AdvancedButton from './AdvancedButton.vue'
+import GlobalButton from './GlobalButton.vue'
+import MenuButton from './MenuButton.vue'
+import ThemeButton from './ThemeButton.vue'
 
 const options = computed(() => {
   return inputMethods.value.map(({ displayName, name }) => ({

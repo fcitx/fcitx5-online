@@ -3,6 +3,7 @@ import {
   darkTheme,
   NConfigProvider,
   NH1,
+  NMessageProvider,
   NModalProvider,
   useOsTheme,
 } from 'naive-ui'
@@ -26,7 +27,9 @@ const osThemeRef = useOsTheme()
           <NH1>{{ appName }}</NH1>
         </div>
         <NModalProvider>
-          <MyContent />
+          <NMessageProvider>
+            <MyContent />
+          </NMessageProvider>
         </NModalProvider>
       </template>
       <template #footer>

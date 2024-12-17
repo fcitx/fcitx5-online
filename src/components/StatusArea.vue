@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, ThemeConfig } from 'fcitx5-config-vue'
+import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, PluginManager, ThemeConfig } from 'fcitx5-config-vue'
 import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
 import AdvancedButton from './AdvancedButton.vue'
 import GlobalButton from './GlobalButton.vue'
 import MenuButton from './MenuButton.vue'
+import PluginButton from './PluginButton.vue'
 import ThemeButton from './ThemeButton.vue'
 
 const options = computed(() => {
@@ -16,12 +17,13 @@ const options = computed(() => {
 })
 
 const showModal = ref(false)
-const modalType = ref<'im' | 'global' | 'theme' | 'advanced'>('im')
+const modalType = ref<'im' | 'global' | 'theme' | 'plugin' | 'advanced'>('im')
 
 const titleMap = {
   im: 'Input Method',
   global: 'Global Config',
   theme: 'Theme Editor',
+  plugin: 'Plugin Manager',
   advanced: 'Advanced',
 }
 </script>
@@ -55,12 +57,19 @@ const titleMap = {
     </NTooltip>
     <NTooltip>
       <template #trigger>
+        <PluginButton @click="modalType = 'plugin'; showModal = true" />
+      </template>
+      {{ titleMap.plugin }}
+    </NTooltip>
+    <NTooltip>
+      <template #trigger>
         <AdvancedButton @click="modalType = 'advanced'; showModal = true" />
       </template>
       {{ titleMap.advanced }}
     </NTooltip>
     <NModal
       v-model:show="showModal"
+      :style="modalType === 'plugin' ? 'width: auto' : 'max-width: 1024px'"
       preset="card"
       :title="titleMap[modalType]"
     >
@@ -76,6 +85,10 @@ const titleMap = {
       />
       <ThemeConfig
         v-else-if="modalType === 'theme'"
+        @close="showModal = false"
+      />
+      <PluginManager
+        v-else-if="modalType === 'plugin'"
         @close="showModal = false"
       />
       <AdvancedConfig

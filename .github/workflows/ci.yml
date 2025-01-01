@@ -19,8 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          wget -P cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js-0.1.0.tgz
-          wget -P cache https://github.com/fcitx-contrib/fcitx5-config-vue/releases/download/latest/fcitx5-config-vue-0.1.0.tgz
+          wget -P cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js.tgz
+          wget -P cache https://github.com/fcitx-contrib/fcitx5-config-vue/releases/download/latest/fcitx5-config-vue.tgz
           npm i -g pnpm
           pnpm i
 

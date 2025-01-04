@@ -3,6 +3,7 @@ import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, PluginMana
 import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
+import { t } from '../i18n'
 import AdvancedButton from './AdvancedButton.vue'
 import GlobalButton from './GlobalButton.vue'
 import MenuButton from './MenuButton.vue'
@@ -20,11 +21,11 @@ const showModal = ref(false)
 const modalType = ref<'im' | 'global' | 'theme' | 'plugin' | 'advanced'>('im')
 
 const titleMap = {
-  im: 'Input Method',
-  global: 'Global Config',
-  theme: 'Theme Editor',
-  plugin: 'Plugin Manager',
-  advanced: 'Advanced',
+  im: t('Input Method'),
+  global: t('Global Config'),
+  theme: t('Theme Editor'),
+  plugin: t('Plugin Manager'),
+  advanced: t('Advanced'),
 }
 </script>
 

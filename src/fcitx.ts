@@ -29,6 +29,8 @@ function statusAreaCallback() {
 }
 
 fcitxReady.then(() => {
+  // @ts-expect-error private API
+  window.fcitx.useWorker = true
   window.fcitx.setStatusAreaCallback(statusAreaCallback)
   window.fcitx.enable()
   window.fcitx.setInputMethods(['keyboard-us', 'pinyin'])

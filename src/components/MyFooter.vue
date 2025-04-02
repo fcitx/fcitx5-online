@@ -5,7 +5,7 @@ const homepage = ''
 const commit = '__COMMIT__'
 const commitURL = `${homepage}/commit/${commit}`
 const buildDate = '__BUILD_DATE__'
-const copyright = '2024 Qijia Liu'
+const copyright = '2024-2025 Qijia Liu'
 </script>
 
 <template>

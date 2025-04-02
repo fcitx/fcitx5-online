@@ -20,10 +20,20 @@ export default defineConfig({
     }),
     vue(),
     viteStaticCopy({
-      targets: ['Fcitx5.data', 'Fcitx5.wasm', 'libFcitx5Config.so', 'libFcitx5Core.so', 'libFcitx5Utils.so'].map(file => ({
+      targets: ['worker.js', 'Fcitx5.js', 'Fcitx5.data', 'Fcitx5.wasm', 'libFcitx5Config.so', 'libFcitx5Core.so', 'libFcitx5Utils.so'].map(file => ({
         src: wasmPath + file,
         dest: 'assets',
       })),
     }),
   ],
+  build: {
+    rollupOptions: {
+      external: ['fcitx5-js'], // Don't bundle Fcitx5.js so that it can be reused by worker.
+      output: {
+        paths: {
+          'fcitx5-js': './Fcitx5.js', // Convert import from 'fcitx5-js' to import from './Fcitx5.js'.
+        },
+      },
+    },
+  },
 })

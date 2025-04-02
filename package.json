@@ -18,18 +18,18 @@
     "preview": "vite preview --host"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.12.1",
+    "@antfu/eslint-config": "^4.11.0",
     "@rollup/plugin-replace": "^6.0.2",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "eslint": "^9.17.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "eslint": "^9.23.0",
     "fcitx5-config-vue": "file:cache/fcitx5-config-vue.tgz",
     "fcitx5-js": "file:cache/fcitx5-js.tgz",
-    "naive-ui": "^2.40.4",
-    "typescript": "5.7.2",
-    "vite": "^6.0.6",
-    "vite-plugin-static-copy": "^2.2.0",
+    "naive-ui": "^2.41.0",
+    "typescript": "5.8.2",
+    "vite": "^6.2.4",
+    "vite-plugin-static-copy": "^2.3.0",
     "vue": "^3.5.13",
-    "vue-i18n": "10",
-    "vue-tsc": "^2.2.0"
+    "vue-i18n": "11",
+    "vue-tsc": "^2.2.8"
   }
 }

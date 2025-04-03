@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { fcitxReady } from 'fcitx5-js'
 import { NInput, NSpace, useNotification } from 'naive-ui'
 import StatusArea from './StatusArea.vue'
-import { fcitxReady } from 'fcitx5-js'
 
 const notification = useNotification()
 
@@ -9,14 +9,14 @@ fcitxReady.then(() => {
   window.fcitx.setNotificationCallback((name, icon, body, timeout) => {
     const options = { title: name, content: body, duration: timeout }
     switch (icon) {
-    case 'error':
-      notification.error(options)
-      break
-    case 'success':
-      notification.success(options)
-      break
-    default:
-      notification.info(options)
+      case 'error':
+        notification.error(options)
+        break
+      case 'success':
+        notification.success(options)
+        break
+      default:
+        notification.info(options)
     }
   })
 })

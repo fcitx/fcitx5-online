@@ -5,6 +5,7 @@ import {
   NH1,
   NMessageProvider,
   NModalProvider,
+  NNotificationProvider,
   useOsTheme,
 } from 'naive-ui'
 import { appName } from '../package.json'
@@ -28,7 +29,9 @@ const osThemeRef = useOsTheme()
         </div>
         <NModalProvider>
           <NMessageProvider>
-            <MyContent />
+            <NNotificationProvider>
+              <MyContent />
+            </NNotificationProvider>
           </NMessageProvider>
         </NModalProvider>
       </template>

@@ -1,13 +1,25 @@
 <script setup lang="ts">
-// import { ref, onMounted } from 'vue'
-import { NInput, NSpace } from 'naive-ui'
+import { fcitxReady } from 'fcitx5-js'
+import { NInput, NSpace, useNotification } from 'naive-ui'
 import StatusArea from './StatusArea.vue'
 
-// const input = ref<InstanceType<typeof NInput>>()
+const notification = useNotification()
 
-// onMounted(() => {
-//   input.value.focus()
-// })
+fcitxReady.then(() => {
+  window.fcitx.setNotificationCallback((name, icon, body, timeout) => {
+    const options = { title: name, content: body, duration: timeout }
+    switch (icon) {
+      case 'error':
+        notification.error(options)
+        break
+      case 'success':
+        notification.success(options)
+        break
+      default:
+        notification.info(options)
+    }
+  })
+})
 </script>
 
 <template>

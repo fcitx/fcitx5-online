@@ -22,19 +22,21 @@ export const inputMethods = ref<{
   displayName: string
 }[]>([])
 
-function statusAreaCallback() {
+function inputMethodsCallback() {
   inputMethods.value = window.fcitx.getInputMethods()
   inputMethod.value = window.fcitx.currentInputMethod()
+}
+
+function statusAreaCallback() {
   menuActions.value = window.fcitx.getMenuActions()
 }
 
 fcitxReady.then(() => {
   // @ts-expect-error private API
   window.fcitx.useWorker = true
+  window.fcitx.setInputMethodsCallback(inputMethodsCallback)
   window.fcitx.setStatusAreaCallback(statusAreaCallback)
   window.fcitx.enable()
-  window.fcitx.setInputMethods(['keyboard-us', 'pinyin'])
   refocus()
-  window.fcitx.updateStatusArea()
   loading.value = false
 })

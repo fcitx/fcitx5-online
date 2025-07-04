@@ -12,9 +12,10 @@ export function refocus() {
   document.querySelector('textarea')?.focus()
 }
 
-watch(inputMethod, (value: string) => {
+watch(inputMethod, (value: string, oldValue: string) => {
   window.fcitx.setCurrentInputMethod(value)
-  refocus()
+  // Don't refocus if it's the initial load, otherwise virtual keyboard can't kick system keyboard.
+  oldValue && refocus()
 })
 
 export const inputMethods = ref<{
@@ -32,11 +33,14 @@ function statusAreaCallback() {
 }
 
 fcitxReady.then(() => {
+  const needsRefocus = document.activeElement?.tagName !== 'TEXTAREA'
   // @ts-expect-error private API
   window.fcitx.useWorker = true
   window.fcitx.setInputMethodsCallback(inputMethodsCallback)
   window.fcitx.setStatusAreaCallback(statusAreaCallback)
   window.fcitx.enable()
-  refocus()
+  // On mobile if textarea is focused, enable will blur and focus asynchronously to kick system keyboard.
+  // Don't focus synchronously here in that case.
+  needsRefocus && refocus()
   loading.value = false
 })

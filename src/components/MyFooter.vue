@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NA } from 'naive-ui'
+import { homepage } from '../../package.json'
 
-const homepage = ''
 const commit = '__COMMIT__'
 const commitURL = `${homepage}/commit/${commit}`
 const buildDate = '__BUILD_DATE__'

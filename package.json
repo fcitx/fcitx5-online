@@ -9,6 +9,7 @@
     "url": "https://github.com/eagleoflqj"
   },
   "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/fcitx-contrib/fcitx5-online",
   "scripts": {
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -18,18 +19,18 @@
     "preview": "vite preview --host"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
+    "@antfu/eslint-config": "^5.4.1",
     "@rollup/plugin-replace": "^6.0.2",
     "@vitejs/plugin-vue": "^6.0.1",
-    "eslint": "^9.33.0",
+    "eslint": "^9.36.0",
     "fcitx5-config-vue": "file:cache/fcitx5-config-vue.tgz",
     "fcitx5-js": "file:cache/fcitx5-js.tgz",
-    "naive-ui": "^2.42.0",
+    "naive-ui": "^2.43.1",
     "typescript": "5.9.2",
-    "vite": "^7.1.2",
-    "vite-plugin-static-copy": "^3.1.1",
-    "vue": "^3.5.18",
+    "vite": "^7.1.7",
+    "vite-plugin-static-copy": "^3.1.2",
+    "vue": "^3.5.22",
     "vue-i18n": "11",
-    "vue-tsc": "^3.0.5"
+    "vue-tsc": "^3.0.8"
   }
 }

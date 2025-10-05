@@ -37,8 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: |
-            dist
+          path: dist
 
   test:
     runs-on: ${{ matrix.os }}
@@ -62,7 +61,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v5
         with:
-          merge-multiple: true
+          path: dist
 
       - name: Install dependencies
         run: |
@@ -85,11 +84,10 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v5
         with:
-          merge-multiple: true
+          path: fcitx5-online
 
       - name: Package
         run: |
-          mv dist fcitx5-online
           zip -r fcitx5-online.zip fcitx5-online
 
       - name: Release

@@ -3,5 +3,10 @@
   "Global Config": "全局配置",
   "Input Method": "输入法",
   "Plugin Manager": "插件管理器",
-  "Theme Editor": "主题编辑器"
+  "Theme Editor": "主题编辑器",
+  "Site is ready to work offline.": "网站已准备好离线运行。",
+  "Update available": "可更新",
+  "You may also need to download latest version of plugins.": "您可能也需要下载插件的最新版本。",
+  "Update now": "现在更新",
+  "Maybe later": "以后再说"
 }

@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 24.x
 
@@ -33,13 +33,66 @@ jobs:
         run: |
           pnpm run build
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: |
+            dist
+
+  test:
+    runs-on: ${{ matrix.os }}
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-24.04}
+          - {os: ubuntu-24.04-arm}
+          - {os: macos-15-intel}
+          - {os: macos-26}
+          - {os: windows-2025}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24.x
+
+      - name: Download artifact
+        uses: actions/download-artifact@v5
+        with:
+          merge-multiple: true
+
+      - name: Install dependencies
+        run: |
+          wget -P cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js.tgz
+          wget -P cache https://github.com/fcitx-contrib/fcitx5-config-vue/releases/download/latest/fcitx5-config-vue.tgz
+          npm i -g pnpm
+          pnpm i
+          npx playwright install
+          npx playwright install-deps
+
+      - name: Test
+        run: |
+          pnpm run test
+
+  release:
+    # if: ${{ github.ref == 'refs/heads/master' }}
+    needs: test
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v5
+        with:
+          merge-multiple: true
+
       - name: Package
         run: |
           mv dist fcitx5-online
           zip -r fcitx5-online.zip fcitx5-online
 
       - name: Release
-        if: ${{ github.ref == 'refs/heads/master' }}
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}

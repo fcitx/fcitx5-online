@@ -13,6 +13,7 @@ import MyContent from './components/MyContent.vue'
 import MyFooter from './components/MyFooter.vue'
 import MyHeader from './components/MyHeader.vue'
 import MyLayout from './components/MyLayout.vue'
+import MyPwa from './components/MyPwa.vue'
 
 const osThemeRef = useOsTheme()
 </script>
@@ -30,6 +31,7 @@ const osThemeRef = useOsTheme()
         <NModalProvider>
           <NMessageProvider>
             <NNotificationProvider>
+              <MyPwa />
               <MyContent />
             </NNotificationProvider>
           </NMessageProvider>

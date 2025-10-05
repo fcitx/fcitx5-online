@@ -18,7 +18,7 @@ function toRepo() {
   >
     <!-- eslint-disable -->
     <img
-      :src="'./fcitx5-js.svg'"
+      :src="'./favicon.svg'"
       style="width: 48px; height: 48px"
     >
     <!-- eslint-enable -->

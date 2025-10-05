@@ -77,7 +77,7 @@ jobs:
           pnpm run test
 
   release:
-    # if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs: test
     runs-on: ubuntu-24.04
     steps:

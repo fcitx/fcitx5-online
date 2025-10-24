@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ResetButton } from 'fcitx5-config-vue'
 import { fcitxReady } from 'fcitx5-js'
 import { NInput, NSpace, useNotification } from 'naive-ui'
 import StatusArea from './StatusArea.vue'
@@ -31,5 +32,7 @@ fcitxReady.then(() => {
       clearable
       :rows="15"
     />
+
+    <ResetButton />
   </NSpace>
 </template>

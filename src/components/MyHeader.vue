@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NIcon, NText } from 'naive-ui'
+import { homepage } from '../../package.json'
 import GitHub from './GitHub.vue'
 
 function toFC() {
@@ -7,7 +8,7 @@ function toFC() {
 }
 
 function toRepo() {
-  window.open('https://github.com/fcitx-contrib/fcitx5-online', '_blank')
+  window.open(homepage, '_blank')
 }
 </script>
 

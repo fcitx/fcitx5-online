@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, PluginManager, ThemeConfig } from 'fcitx5-config-vue'
+import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, PluginManager, t, ThemeConfig } from 'fcitx5-config-vue'
 import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
-import { t } from '../i18n'
 import AdvancedButton from './AdvancedButton.vue'
 import GlobalButton from './GlobalButton.vue'
 import MenuButton from './MenuButton.vue'

@@ -38,20 +38,20 @@ const titleMap = {
     />
     <NTooltip>
       <template #trigger>
-        <GearButton @click="modalType = 'im'; showModal = true" />
+        <GearButton :disabled="loading" @click="modalType = 'im'; showModal = true" />
       </template>
       {{ titleMap.im }}
     </NTooltip>
     <MenuButton />
     <NTooltip>
       <template #trigger>
-        <GlobalButton @click="modalType = 'global'; showModal = true" />
+        <GlobalButton :disabled="loading" @click="modalType = 'global'; showModal = true" />
       </template>
       {{ titleMap.global }}
     </NTooltip>
     <NTooltip>
       <template #trigger>
-        <ThemeButton @click="modalType = 'theme'; showModal = true" />
+        <ThemeButton :disabled="loading" @click="modalType = 'theme'; showModal = true" />
       </template>
       {{ titleMap.theme }}
     </NTooltip>
@@ -63,7 +63,7 @@ const titleMap = {
     </NTooltip>
     <NTooltip>
       <template #trigger>
-        <AdvancedButton @click="modalType = 'advanced'; showModal = true" />
+        <AdvancedButton :disabled="loading" @click="modalType = 'advanced'; showModal = true" />
       </template>
       {{ titleMap.advanced }}
     </NTooltip>
@@ -89,6 +89,7 @@ const titleMap = {
       />
       <PluginManager
         v-else-if="modalType === 'plugin'"
+        :disabled="loading"
         @close="showModal = false"
       />
       <AdvancedConfig

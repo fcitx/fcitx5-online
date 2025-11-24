@@ -27,6 +27,8 @@ const modalStyle = computed(() => {
 })
 
 const inputMethodTitle = ref('')
+const globalTitle = ref('')
+const themeTitle = ref('')
 const advancedTitle = ref('')
 
 const titleMap = {
@@ -40,6 +42,12 @@ const titleMap = {
 const title = computed(() => {
   if (modalType.value === 'im' && inputMethodTitle.value) {
     return inputMethodTitle.value
+  }
+  if (modalType.value === 'global' && globalTitle.value) {
+    return globalTitle.value
+  }
+  if (modalType.value === 'theme' && themeTitle.value) {
+    return themeTitle.value
   }
   if (modalType.value === 'advanced' && advancedTitle.value) {
     return advancedTitle.value
@@ -103,10 +111,12 @@ const title = computed(() => {
       <GlobalConfig
         v-else-if="modalType === 'global'"
         @close="showModal = false"
+        @update-title="(title: string) => globalTitle = title"
       />
       <ThemeConfig
         v-else-if="modalType === 'theme'"
         @close="showModal = false"
+        @update-title="(title: string) => themeTitle = title"
       />
       <PluginManager
         v-else-if="modalType === 'plugin'"

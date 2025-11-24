@@ -27,6 +27,7 @@ const modalStyle = computed(() => {
 })
 
 const inputMethodTitle = ref('')
+const advancedTitle = ref('')
 
 const titleMap = {
   im: t('Input Method'),
@@ -39,6 +40,9 @@ const titleMap = {
 const title = computed(() => {
   if (modalType.value === 'im' && inputMethodTitle.value) {
     return inputMethodTitle.value
+  }
+  if (modalType.value === 'advanced' && advancedTitle.value) {
+    return advancedTitle.value
   }
   return titleMap[modalType.value]
 })
@@ -112,6 +116,7 @@ const title = computed(() => {
       <AdvancedConfig
         v-else
         @close="showModal = false"
+        @update-title="(title) => advancedTitle = title"
       />
     </NModal>
   </NSpace>

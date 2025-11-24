@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, PluginManager, t, ThemeConfig } from 'fcitx5-config-vue'
+import { AdvancedConfig, GearButton, GlobalConfig, InputMethodConfig, isMobile, PluginManager, t, ThemeConfig } from 'fcitx5-config-vue'
 import { NModal, NSelect, NSpace, NTooltip } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { inputMethod, inputMethods, loading } from '../fcitx'
@@ -18,6 +18,15 @@ const options = computed(() => {
 
 const showModal = ref(false)
 const modalType = ref<'im' | 'global' | 'theme' | 'plugin' | 'advanced'>('im')
+const modalStyle = computed(() => {
+  const style: { [key: string]: string } = modalType.value === 'plugin' ? { width: 'auto' } : { 'max-width': '1024px' }
+  if (isMobile.value && modalType.value !== 'plugin') {
+    style.height = '100vh'
+  }
+  return style
+})
+
+const inputMethodTitle = ref('')
 
 const titleMap = {
   im: t('Input Method'),
@@ -26,6 +35,13 @@ const titleMap = {
   plugin: t('Plugin Manager'),
   advanced: t('Advanced'),
 }
+
+const title = computed(() => {
+  if (modalType.value === 'im' && inputMethodTitle.value) {
+    return inputMethodTitle.value
+  }
+  return titleMap[modalType.value]
+})
 </script>
 
 <template>
@@ -69,15 +85,16 @@ const titleMap = {
     </NTooltip>
     <NModal
       v-model:show="showModal"
-      :style="modalType === 'plugin' ? 'width: auto' : 'max-width: 1024px'"
+      :style="modalStyle"
       preset="card"
-      :title="titleMap[modalType]"
+      :title="title"
     >
       <InputMethodConfig
         v-if="modalType === 'im'"
         :input-method="inputMethod"
         :input-methods="inputMethods"
         @close="showModal = false"
+        @update-title="(title) => inputMethodTitle = title"
       />
       <GlobalConfig
         v-else-if="modalType === 'global'"
@@ -99,3 +116,15 @@ const titleMap = {
     </NModal>
   </NSpace>
 </template>
+
+<style>
+.n-modal .n-card__content {
+  /* Make mobile modal unscrollable by calculating exact content height. */
+  height: calc(100% - var(--n-padding-top) - var(--n-padding-bottom) - var(--n-line-height) * var(--n-title-font-size));
+}
+
+.n-modal .n-card-header {
+  /* Don't enlarge height for long title that wraps, so that the calculation above still holds. */
+  overflow: hidden;
+}
+</style>

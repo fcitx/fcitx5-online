@@ -18,13 +18,6 @@ const options = computed(() => {
 
 const showModal = ref(false)
 const modalType = ref<'im' | 'global' | 'theme' | 'plugin' | 'advanced'>('im')
-const modalStyle = computed(() => {
-  const style: { [key: string]: string } = modalType.value === 'plugin' ? { width: 'auto' } : { 'max-width': '1024px' }
-  if (isMobile.value && modalType.value !== 'plugin') {
-    style.height = '100vh'
-  }
-  return style
-})
 
 const inputMethodTitle = ref('')
 const globalTitle = ref('')
@@ -97,7 +90,7 @@ const title = computed(() => {
     </NTooltip>
     <NModal
       v-model:show="showModal"
-      :style="modalStyle"
+      :style="isMobile ? { height: '100vh' } : { 'max-width': '1024px' }"
       preset="card"
       :title="title"
     >

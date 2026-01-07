@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ResetButton } from 'fcitx5-config-vue'
 import { fcitxReady } from 'fcitx5-js'
-import { NInput, NSpace, useNotification } from 'naive-ui'
+import { NInput, NSpace, useMessage, useNotification } from 'naive-ui'
+import { t } from '../i18n'
 import StatusArea from './StatusArea.vue'
 
 const notification = useNotification()
+const message = useMessage()
+let messagedSystemInputMethodInUse = false
 
 fcitxReady.then(() => {
   window.fcitx.setNotificationCallback((name, icon, body, timeout) => {
@@ -20,6 +23,13 @@ fcitxReady.then(() => {
         notification.info(options)
     }
   })
+
+  window.fcitx.setSystemInputMethodInUseCallback(() => {
+    if (!messagedSystemInputMethodInUse) {
+      message.warning(t('Please disable system input method'))
+      messagedSystemInputMethodInUse = true
+    }
+  })
 })
 </script>
 
@@ -31,6 +41,7 @@ fcitxReady.then(() => {
       type="textarea"
       clearable
       :rows="15"
+      @blur="messagedSystemInputMethodInUse = false"
     />
 
     <ResetButton />

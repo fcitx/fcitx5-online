@@ -30,7 +30,8 @@ const osThemeRef = useOsTheme()
         </div>
         <NModalProvider>
           <NMessageProvider>
-            <NNotificationProvider>
+            <!-- Make sure Ctrl+Shift+F only has 1 latest notification. -->
+            <NNotificationProvider :max="1">
               <MyPwa />
               <MyContent />
             </NNotificationProvider>

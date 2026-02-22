@@ -6,12 +6,17 @@ on:
       - master
   pull_request:
   workflow_dispatch:
+    inputs:
+      testing:
+        description: Use fcitx5-js testing release
+        type: boolean
+        default: false
 
 jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v6
         with:
@@ -19,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js.tgz
+          curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/${{ inputs.testing == true && 'testing' || 'latest' }}/fcitx5-js.tgz
           curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-config-vue/releases/download/latest/fcitx5-config-vue.tgz
           npm i -g pnpm
           pnpm i
@@ -34,7 +39,7 @@ jobs:
           pnpm run build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: dist
           path: dist
@@ -51,21 +56,21 @@ jobs:
           - {os: macos-26}
           - {os: windows-2025}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v6
         with:
           node-version: 24.x
 
       - name: Download artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: dist
           path: dist
 
       - name: Install dependencies
         run: |
-          curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/latest/fcitx5-js.tgz
+          curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/${{ inputs.testing == true && 'testing' || 'latest' }}/fcitx5-js.tgz
           curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-config-vue/releases/download/latest/fcitx5-config-vue.tgz
           npm i -g pnpm
           pnpm i
@@ -77,12 +82,12 @@ jobs:
           pnpm run test
 
   release:
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' || inputs.testing == true }}
     needs: test
     runs-on: ubuntu-24.04
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: dist
           path: fcitx5-online
@@ -95,8 +100,14 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: latest
+          automatic_release_tag: ${{ inputs.testing == true && 'testing' || 'latest' }}
           prerelease: true
-          title: Nightly Build
+          title: ${{ inputs.testing == true && 'Testing Build' || 'Nightly Build' }}
           files: |
             fcitx5-online.zip
+
+      - name: Delete testing release
+        if: ${{ inputs.testing != true }}
+        run: gh release delete testing --yes --repo fcitx/fcitx5-online || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

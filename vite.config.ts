@@ -25,6 +25,7 @@ export default defineConfig({
       targets: ['worker.js', 'Fcitx5.js', 'Fcitx5.data', 'Fcitx5.wasm', 'libFcitx5Config.so', 'libFcitx5Core.so', 'libFcitx5Utils.so'].map(file => ({
         src: wasmPath + file,
         dest: 'wasm', // Don't put under assets, as vite pwa won't hash them by default.
+        rename: { stripBase: 3 },
       })),
     }),
     VitePWA({

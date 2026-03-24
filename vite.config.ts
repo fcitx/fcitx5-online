@@ -16,7 +16,6 @@ export default defineConfig({
     exclude: ['fcitx5-js'],
   },
   plugins: [
-    // @ts-expect-error plugin type not esm compatible
     replace({
       __COMMIT__: execSync('git rev-parse HEAD').toString().trim(),
       __BUILD_DATE__: new Date().toLocaleString(),

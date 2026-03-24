@@ -126,7 +126,7 @@ const title = computed(() => {
 </template>
 
 <style>
-.n-modal .n-card__content {
+.n-modal .n-card-content {
   /* Make mobile modal unscrollable by calculating exact content height. */
   height: calc(100% - var(--n-padding-top) - var(--n-padding-bottom) - var(--n-line-height) * var(--n-title-font-size));
 }

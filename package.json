@@ -11,8 +11,8 @@
   "license": "AGPL-3.0-or-later",
   "homepage": "https://github.com/fcitx/fcitx5-online",
   "scripts": {
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint": "eslint src tests",
+    "lint:fix": "eslint --fix src tests",
     "check": "vue-tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
     "dev": "vite --host",
     "build": "vite build",

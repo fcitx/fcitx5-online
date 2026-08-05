@@ -3,7 +3,7 @@ import { getLocale } from 'fcitx5-config-vue'
 import { enUS, zhCN, ruRU } from 'naive-ui'
 import { createI18n } from 'vue-i18n'
 import zh_CN from './locales/zh-CN.json'
-import zh_CN from './locales/ru-RU.json'
+import ru_RU from './locales/ru-RU.json'
 
 const messages = {
   'en': Object.fromEntries(Object.keys(zh_CN).map(key => [key, key])),

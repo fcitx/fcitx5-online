@@ -14,13 +14,13 @@ import MyFooter from './components/MyFooter.vue'
 import MyHeader from './components/MyHeader.vue'
 import MyLayout from './components/MyLayout.vue'
 import MyPwa from './components/MyPwa.vue'
-import { getNaiveLocale } from './i18n'
+import { getDirection, getNaiveLocale } from './i18n'
 
 const osThemeRef = useOsTheme()
 </script>
 
 <template>
-  <NConfigProvider :theme="osThemeRef === 'dark' ? darkTheme : null" :locale="getNaiveLocale()">
+  <NConfigProvider :theme="osThemeRef === 'dark' ? darkTheme : null" :locale="getNaiveLocale()" :dir="getDirection()">
     <MyLayout>
       <template #header>
         <MyHeader />

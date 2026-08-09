@@ -61,3 +61,7 @@ export function getNaiveLocale(): NLocale {
     'zh-TW': zhTW,
   }[locale]
 }
+
+export function getDirection(): 'rtl' | 'ltr' {
+  return i18n.global.locale === 'he' ? 'rtl' : 'ltr'
+}

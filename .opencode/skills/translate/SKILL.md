@@ -19,14 +19,25 @@ fcitx5-online is a Vue 3 application using **vue-i18n** (not gettext). It has on
 
 ### Locale Mapping
 
-Supported locale codes come from `src/i18n.ts` (`messages`):
+Supported locale codes come from `src/i18n.ts` (`messages`), which is the authoritative list:
 
 | Locale code (JSON file) | Language | naive-ui `NLocale` |
 |--------------------------|----------|---------------------|
-| zh-CN | Simplified Chinese (source) | zhCN |
+| ca | Catalan | enUS (unavailable) |
+| da | Danish | daDK |
+| de | German | deDE |
+| es | Spanish | esAR |
+| fr | French | frFR |
+| he | Hebrew | enUS (unavailable) |
+| ja | Japanese | jaJP |
+| ka | Georgian | enUS (unavailable) |
+| ko | Korean | koKR |
 | ru | Russian | ruRU |
+| vi | Vietnamese | viVN |
+| zh-CN | Simplified Chinese (source) | zhCN |
+| zh-TW | Traditional Chinese | zhTW |
 
-`en` (English) is auto-generated from the JSON keys in `src/i18n.ts` and has no file.
+`en` (English) is auto-generated from the JSON keys in `src/i18n.ts` and has no file. Keep this table in sync with `messages` whenever a language is added or removed.
 
 ### naive-ui Locales
 

@@ -38,16 +38,15 @@ const missing = ka.filter(k => !kb.includes(k))
 const extra = kb.filter(k => !ka.includes(k))
 // Words that are legitimately identical in the target language and should not
 // be reported as untranslated (keyed by locale derived from the target file).
-const SAME_WORD = {
-  ru: ['OK'],
-}
+// No locale currently needs an exception; add an entry when a key genuinely
+// stays the same in a target language.
+const SAME_WORD = {}
 const locale = target.split('/').pop().replace(/\.json$/, '')
 const sameWord = SAME_WORD[locale] ?? []
-// A value that equals its leaf key means it is still the English placeholder.
+// A value that equals its flat key means it is still the English placeholder.
 const untranslated = ka.filter(k => {
   const v = get(b, k)
-  const leaf = k.split('.').pop()
-  return typeof v === 'string' && v === leaf && !sameWord.includes(leaf)
+  return typeof v === 'string' && v === k && !sameWord.includes(k)
 })
 
 // Interpolation placeholders ({name}) must be preserved exactly in the
@@ -61,9 +60,12 @@ function placeholders(s) {
 }
 
 const placeholderFailures = ka.filter(k => {
-  if (typeof get(a, k) !== 'string' || typeof get(b, k) !== 'string') return false
-  const pa = placeholders(get(a, k))
-  const pb = placeholders(get(b, k))
+  const va = get(a, k)
+  const vb = get(b, k)
+  if (typeof va !== 'string') return false
+  if (typeof vb !== 'string') return true
+  const pa = placeholders(va)
+  const pb = placeholders(vb)
   if (pa.size !== pb.size) return true
   for (const [name, count] of pa) {
     if (pb.get(name) !== count) return true
@@ -87,7 +89,7 @@ if (untranslated.length) {
   exit = true
 }
 if (placeholderFailures.length) {
-  console.log(`PLACEHOLDER MISMATCH (interpolation {name} differs between ${base} and ${target}):`)
+  console.log(`TYPE/PLACEHOLDER MISMATCH (target value is not a string, or interpolation {name} differs between ${base} and ${target}):`)
   console.log(placeholderFailures.join('\n'))
   exit = true
 }

@@ -23,13 +23,13 @@ function toRepo() {
       style="width: 48px; height: 48px"
     >
     <!-- eslint-enable -->
-    <NText style="font-size: 18px; margin-left: 12px">
+    <NText style="font-size: 18px; margin-inline-start: 12px">
       Fcitx Contrib
     </NText>
   </div>
   <NIcon
     :size="28"
-    style="padding-right: 16px; cursor: pointer"
+    style="padding-inline-end: 16px; cursor: pointer"
     @click="toRepo"
   >
     <GitHub />

@@ -126,7 +126,7 @@ Use these translations consistently:
 3. **Respect platform conventions** — use terminology the target platform's users expect.
 4. **No machine-translation artifacts** — avoid overly formal or stilted phrasing; translations should read naturally.
 5. **Do not translate** — brand names, file paths, technical identifiers, or code. Keep well-known UI/design terms in their original form if translating would cause confusion.
-6. **Preserve `{param}` interpolation** — all named placeholders must appear in the translated value in the same order/names.
+6. **Preserve `{param}` interpolation** — all named placeholders must appear in the translated value with the same names and counts; their order is not enforced, so reordering to fit the target language is allowed.
 7. **Punctuation** — use the target language's punctuation conventions (e.g. Chinese full-width 。、？ vs English half-width . , ?).
 8. **The key is the English source** — the key plus the `zh-CN` value together give the intended meaning; translate the key using both as context.
 

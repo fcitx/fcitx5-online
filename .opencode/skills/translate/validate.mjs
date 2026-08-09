@@ -49,8 +49,9 @@ const untranslated = ka.filter(k => {
   return typeof v === 'string' && v === k && !sameWord.includes(k)
 })
 
-// Interpolation placeholders ({name}) must be preserved exactly in the
-// translation: same names with the same counts for every leaf in both locales.
+// Interpolation placeholders ({name}) must be preserved in the translation:
+// same names with the same counts for every leaf in both locales. Order is not
+// enforced — reordering to fit the target language is allowed.
 function placeholders(s) {
   const counts = new Map()
   for (const m of String(s).matchAll(/\{([^{}]+)\}/g)) {

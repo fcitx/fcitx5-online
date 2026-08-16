@@ -9,6 +9,8 @@ import MenuButton from './MenuButton.vue'
 import PluginButton from './PluginButton.vue'
 import ThemeButton from './ThemeButton.vue'
 
+const hasCandidateWindow = computed(() => window.fcitx.hasCandidateWindow())
+
 const options = computed(() => {
   return inputMethods.value.map(({ displayName, name }) => ({
     label: displayName,
@@ -70,7 +72,7 @@ const title = computed(() => {
       </template>
       {{ titleMap.global }}
     </NTooltip>
-    <NTooltip>
+    <NTooltip v-if="hasCandidateWindow">
       <template #trigger>
         <ThemeButton :disabled="loading" @click="modalType = 'theme'; showModal = true" />
       </template>

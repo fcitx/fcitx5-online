@@ -1,6 +1,6 @@
 import type { NLocale } from 'naive-ui'
 import { getLocale } from 'fcitx5-config-vue'
-import { daDK, deDE, enUS, esAR, frFR, jaJP, koKR, ruRU, viVN, zhCN, zhTW } from 'naive-ui'
+import { caES, daDK, deDE, enUS, esAR, frFR, heIL, jaJP, kaGE, koKR, ruRU, viVN, zhCN, zhTW } from 'naive-ui'
 import { createI18n } from 'vue-i18n'
 import ca from './locales/ca.json'
 import da from './locales/da.json'
@@ -45,15 +45,15 @@ export function t(key: string) {
 export function getNaiveLocale(): NLocale {
   const locale = i18n.global.locale
   return {
-    'ca': enUS, // XXX: unavailable
+    'ca': caES,
     'da': daDK,
     'de': deDE,
     'en': enUS,
     'es': esAR,
     'fr': frFR,
-    'he': enUS, // XXX: unavailable
+    'he': heIL,
     'ja': jaJP,
-    'ka': enUS, // XXX: unavailable
+    'ka': kaGE,
     'ko': koKR,
     'ru': ruRU,
     'vi': viVN,

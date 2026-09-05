@@ -33,6 +33,7 @@ Supported locale codes come from `src/i18n.ts` (`messages`), which is the author
 | ka | Georgian | enUS (unavailable) |
 | ko | Korean | koKR |
 | ru | Russian | ruRU |
+| sv | Swedish | svSE |
 | vi | Vietnamese | viVN |
 | zh-CN | Simplified Chinese (source) | zhCN |
 | zh-TW | Traditional Chinese | zhTW |

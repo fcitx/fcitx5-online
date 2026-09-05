@@ -1,6 +1,6 @@
 import type { NLocale } from 'naive-ui'
 import { getLocale } from 'fcitx5-config-vue'
-import { caES, daDK, deDE, enUS, esAR, frFR, heIL, jaJP, kaGE, koKR, ruRU, viVN, zhCN, zhTW } from 'naive-ui'
+import { caES, daDK, deDE, enUS, esAR, frFR, heIL, jaJP, kaGE, koKR, ruRU, svSE, viVN, zhCN, zhTW } from 'naive-ui'
 import { createI18n } from 'vue-i18n'
 import ca from './locales/ca.json'
 import da from './locales/da.json'
@@ -12,6 +12,7 @@ import ja from './locales/ja.json'
 import ka from './locales/ka.json'
 import ko from './locales/ko.json'
 import ru from './locales/ru.json'
+import sv from './locales/sv.json'
 import vi from './locales/vi.json'
 import zh_CN from './locales/zh-CN.json'
 import zh_TW from './locales/zh-TW.json'
@@ -28,6 +29,7 @@ const messages = {
   'ka': ka,
   'ko': ko,
   'ru': ru,
+  'sv': sv,
   'vi': vi,
   'zh-CN': zh_CN,
   'zh-TW': zh_TW,
@@ -56,6 +58,7 @@ export function getNaiveLocale(): NLocale {
     'ka': kaGE,
     'ko': koKR,
     'ru': ruRU,
+    'sv': svSE,
     'vi': viVN,
     'zh-CN': zhCN,
     'zh-TW': zhTW,

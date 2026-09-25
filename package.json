@@ -20,23 +20,23 @@
     "test": "playwright test --browser all"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^9.3.0",
-    "@playwright/test": "1.62.1",
+    "@antfu/eslint-config": "^9.5.1",
+    "@playwright/test": "1.63.0",
     "@rollup/plugin-replace": "^6.0.3",
-    "@types/node": "^26.2.0",
-    "@vite-pwa/assets-generator": "^1.0.2",
-    "@vitejs/plugin-vue": "^6.0.8",
-    "eslint": "^10.8.1",
+    "@types/node": "^26.6.2",
+    "@vite-pwa/assets-generator": "^2.0.0",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "eslint": "^10.11.0",
     "fcitx5-config-vue": "file:cache/fcitx5-config-vue.tgz",
     "fcitx5-js": "file:cache/fcitx5-js.tgz",
-    "naive-ui": "^2.45.1",
+    "naive-ui": "^2.45.3",
     "typescript": "6.0.3",
-    "vite": "^8.2.1",
+    "vite": "^8.3.1",
     "vite-plugin-pwa": "^1.3.0",
     "vite-plugin-static-copy": "^4.1.1",
-    "vue": "^3.5.41",
+    "vue": "^3.5.43",
     "vue-i18n": "11",
-    "vue-tsc": "^3.3.10",
+    "vue-tsc": "^3.3.11",
     "workbox-window": "^7.4.1"
   }
 }

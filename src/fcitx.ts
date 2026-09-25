@@ -1,4 +1,4 @@
-import type { MenuAction } from 'fcitx5-js'
+import type { StatusArea } from 'fcitx5-js'
 import { fcitxReady } from 'fcitx5-js'
 import { ref, watch } from 'vue'
 
@@ -6,7 +6,7 @@ export const loading = ref(true)
 
 export const inputMethod = ref('')
 
-export const menuActions = ref<MenuAction[]>([])
+export const statusArea = ref<StatusArea>()
 
 export function refocus() {
   document.querySelector('textarea')?.focus()
@@ -28,8 +28,8 @@ function inputMethodsCallback() {
   inputMethod.value = window.fcitx.currentInputMethod()
 }
 
-function statusAreaCallback() {
-  menuActions.value = window.fcitx.getMenuActions()
+function statusAreaCallback(value: StatusArea) {
+  statusArea.value = value
 }
 
 fcitxReady.then(() => {

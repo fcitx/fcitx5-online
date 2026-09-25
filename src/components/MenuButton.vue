@@ -3,17 +3,17 @@ import type { MenuAction } from 'fcitx5-js'
 import type { DropdownOption } from 'naive-ui'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { computed, h } from 'vue'
-import { menuActions, refocus } from '../fcitx'
+import { refocus, statusArea } from '../fcitx'
 import CheckIcon from './CheckIcon.vue'
 import HamburgerIcon from './HamburgerIcon.vue'
 
-function actionToOption(action: MenuAction) {
+function actionToOption(action: MenuAction, inputContext: string, generation: number) {
   if (action.separator) {
     return { type: 'divider' }
   }
   const option: DropdownOption = {
     label: action.desc,
-    key: action.id,
+    key: JSON.stringify([action.id, inputContext, generation]),
   }
   if (action.checked) {
     option.icon = () => h(NIcon, null, {
@@ -21,16 +21,20 @@ function actionToOption(action: MenuAction) {
     })
   }
   if (action.children) {
-    option.children = action.children.map(actionToOption)
+    option.children = action.children.map(action => actionToOption(action, inputContext, generation))
   }
   return option
 }
 
-const options = computed(() => menuActions.value.map(actionToOption))
+const options = computed(() => {
+  const value = statusArea.value
+  return value?.actions.map(action => actionToOption(action, value.inputContext, value.generation)) ?? []
+})
 
-function handleSelect(key: number) {
-  window.fcitx.activateMenuAction(key)
+function handleSelect(key: string) {
+  const [id, inputContext, generation] = JSON.parse(key) as [number, string, number]
   refocus()
+  window.fcitx.activateMenuAction(id, inputContext, generation)
 }
 </script>
 

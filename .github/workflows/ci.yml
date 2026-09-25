@@ -72,7 +72,7 @@ jobs:
         run: |
           curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-js/releases/download/${{ inputs.testing == true && 'testing' || 'latest' }}/fcitx5-js.tgz
           curl -LO --output-dir cache https://github.com/fcitx-contrib/fcitx5-config-vue/releases/download/latest/fcitx5-config-vue.tgz
-          npm i -g pnpm
+          npm i -g pnpm@12.5.1
           pnpm i
           npx playwright install
           npx playwright install-deps

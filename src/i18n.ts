@@ -66,5 +66,7 @@ export function getNaiveLocale(): NLocale {
 }
 
 export function getDirection(): 'rtl' | 'ltr' {
-  return i18n.global.locale === 'he' ? 'rtl' : 'ltr'
+  return i18n.global.locale === 'he'
+    ? 'rtl'
+    : 'ltr'
 }

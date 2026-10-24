@@ -8,7 +8,14 @@ test('Offline', async ({ page }) => {
     '/',
     '/favicon.svg',
     ...assets.map(file => `/assets/${file}`),
-    ...['Fcitx5.js', 'Fcitx5.wasm', 'Fcitx5.data', 'libFcitx5Core.so', 'libFcitx5Config.so', 'libFcitx5Utils.so'].map(file => `/wasm/${file}`),
+    ...[
+      'Fcitx5.js',
+      'Fcitx5.wasm',
+      'Fcitx5.data',
+      'libFcitx5Core.so',
+      'libFcitx5Config.so',
+      'libFcitx5Utils.so',
+    ].map(file => `/wasm/${file}`),
   ]
   await init(page)
   await expect(page.getByText('Site is ready to work offline.')).toBeVisible()

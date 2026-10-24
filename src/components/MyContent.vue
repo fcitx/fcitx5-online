@@ -13,10 +13,16 @@ let messagedSystemInputMethodInUse = false
 fcitxReady.then(() => {
   window.fcitx.setNotificationCallback((name, icon, body, timeout, tipId, actions) => {
     const instance = notification.create({
-      type: icon === 'error' ? 'error' : icon === 'success' ? 'success' : 'info',
+      type: icon === 'error'
+        ? 'error'
+        : icon === 'success'
+          ? 'success'
+          : 'info',
       title: name,
       content: body,
-      duration: timeout > 0 ? Math.max(timeout, 3000) : undefined,
+      duration: timeout > 0
+        ? Math.max(timeout, 3000)
+        : undefined,
       meta: () => h('div'),
       action: tipId
         ? () => h(NButton, {
